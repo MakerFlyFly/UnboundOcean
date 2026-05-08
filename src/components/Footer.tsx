@@ -6,6 +6,11 @@ type FooterProps = {
 }
 
 export function Footer({ content }: FooterProps) {
+  const footerNav = content.nav.map((item) => ({
+    ...item,
+    href: item.href.startsWith('#') ? `/${item.href}` : item.href,
+  }))
+
   return (
     <footer className="site-footer">
       <div>
@@ -16,10 +21,11 @@ export function Footer({ content }: FooterProps) {
       </div>
 
       <div className="footer-links">
-        <a href="/#partners">Platform Partners</a>
-        <a href="/#markets">Markets</a>
-        <a href="/#services">Services</a>
-        <a href={contactConfig.assistantPath}>AI Assistant</a>
+        {footerNav.map((item) => (
+          <a key={item.href} href={item.href}>
+            {item.label}
+          </a>
+        ))}
         <a href={contactConfig.gnwayUrl} target="_blank" rel="noreferrer">
           GNWAY
         </a>

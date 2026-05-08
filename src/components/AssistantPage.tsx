@@ -30,7 +30,8 @@ const assistantCopy = {
   zh: {
     overline: 'AI 助手',
     title: '向 UnboundOcean 助手提问。',
-    body: '你可以通过这个助手了解市场覆盖、服务范围、伙伴能力和联系方式。',
+    body:
+      '你可以通过这个助手了解市场覆盖、服务范围、伙伴能力和联系方式。',
     placeholder: '询问市场、服务、伙伴或联系方式...',
     send: '提问',
     contact: '联系销售',
@@ -39,7 +40,7 @@ const assistantCopy = {
     prompts: [
       '你们覆盖哪些东南亚市场？',
       'UnboundOcean 提供什么服务？',
-      '金万维和帮我吧分别是什么关系？',
+      'GNWAY 和 Bangwo8 分别是什么关系？',
       '如何联系销售？',
     ],
     fallback:
@@ -111,47 +112,49 @@ export function AssistantPage({ content, locale }: AssistantPageProps) {
 
   return (
     <main className="assistant-page" id="top">
-      <section className="assistant-hero">
-        <div>
-          <p className="overline">{copy.overline}</p>
-          <h1>{copy.title}</h1>
-          <p>{copy.body}</p>
-        </div>
-        <div className="assistant-panel">
-          <form
-            onSubmit={(event) => {
-              event.preventDefault()
-              submitQuestion(question)
-            }}
-          >
-            <label htmlFor="assistant-question">{copy.placeholder}</label>
-            <textarea
-              id="assistant-question"
-              value={question}
-              onChange={(event) => setQuestion(event.target.value)}
-              placeholder={copy.placeholder}
-              rows={4}
-            />
-            <button className="button button-dark" type="submit">
-              {copy.send}
-            </button>
-          </form>
-
-          <div className="assistant-answer" aria-live="polite">
-            <span>UnboundOcean</span>
-            <p>{answer}</p>
+      <section className="site-section assistant-hero">
+        <div className="section-inner section-fill-grid assistant-inner">
+          <div className="section-heading-block assistant-copy">
+            <p className="overline">{copy.overline}</p>
+            <h1>{copy.title}</h1>
+            <p>{copy.body}</p>
           </div>
-
-          <div className="assistant-prompts">
-            {copy.prompts.map((prompt) => (
-              <button
-                key={prompt}
-                type="button"
-                onClick={() => submitQuestion(prompt)}
-              >
-                {prompt}
+          <div className="assistant-panel">
+            <form
+              onSubmit={(event) => {
+                event.preventDefault()
+                submitQuestion(question)
+              }}
+            >
+              <label htmlFor="assistant-question">{copy.placeholder}</label>
+              <textarea
+                id="assistant-question"
+                value={question}
+                onChange={(event) => setQuestion(event.target.value)}
+                placeholder={copy.placeholder}
+                rows={4}
+              />
+              <button className="button button-dark" type="submit">
+                {copy.send}
               </button>
-            ))}
+            </form>
+
+            <div className="assistant-answer" aria-live="polite">
+              <span>UnboundOcean</span>
+              <p>{answer}</p>
+            </div>
+
+            <div className="assistant-prompts">
+              {copy.prompts.map((prompt) => (
+                <button
+                  key={prompt}
+                  type="button"
+                  onClick={() => submitQuestion(prompt)}
+                >
+                  {prompt}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>

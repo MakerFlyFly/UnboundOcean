@@ -19,6 +19,28 @@ function App() {
     document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en'
   }, [locale])
 
+  useEffect(() => {
+    const scrollToHash = () => {
+      const hash = window.location.hash.slice(1)
+      if (!hash) {
+        return
+      }
+
+      window.requestAnimationFrame(() => {
+        document
+          .getElementById(decodeURIComponent(hash))
+          ?.scrollIntoView({ block: 'start' })
+      })
+    }
+
+    scrollToHash()
+    window.addEventListener('hashchange', scrollToHash)
+
+    return () => {
+      window.removeEventListener('hashchange', scrollToHash)
+    }
+  }, [isAssistantRoute])
+
   return (
     <div className="site-shell">
       <Header

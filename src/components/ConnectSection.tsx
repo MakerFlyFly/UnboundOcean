@@ -8,32 +8,40 @@ type ConnectSectionProps = {
 
 export function ConnectSection({ content }: ConnectSectionProps) {
   return (
-    <section className="connect-section" aria-labelledby="connect-heading">
-      <div className="section-kicker">
-        <span />
-        {content.connect.kicker}
-        <span />
-      </div>
-      <h2 id="connect-heading">{content.connect.title}</h2>
+    <section
+      className="site-section connect-section"
+      id="connect"
+      aria-labelledby="connect-heading"
+    >
+      <div className="section-inner connect-inner">
+        <div className="section-heading-block connect-heading-block">
+          <div className="section-kicker">
+            <span />
+            {content.connect.kicker}
+            <span />
+          </div>
+          <h2 id="connect-heading">{content.connect.title}</h2>
+        </div>
 
-      <div className="connect-grid">
-        {content.connect.items.map((item, index) => (
-          <article className="connect-card" key={item.title}>
-            <div className="line-icon" aria-hidden="true">
-              <ConnectIcon type={icons[index]} />
-            </div>
-            <div>
-              <h3>{item.title}</h3>
-              <div className="mini-rule" />
-              <p>{item.description}</p>
-              <ul>
-                {item.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </div>
-          </article>
-        ))}
+        <div className="section-fill-grid connect-grid">
+          {content.connect.items.map((item, index) => (
+            <article className="connect-card" key={item.title}>
+              <div className="line-icon" aria-hidden="true">
+                <ConnectIcon type={icons[index]} />
+              </div>
+              <div>
+                <h3>{item.title}</h3>
+                <div className="mini-rule" />
+                <p>{item.description}</p>
+                <ul>
+                  {item.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   )

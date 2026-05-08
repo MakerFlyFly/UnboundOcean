@@ -7,29 +7,37 @@ type PartnerSectionProps = {
 
 export function PartnerSection({ content }: PartnerSectionProps) {
   return (
-    <section className="partner-section" id="partners" aria-labelledby="partners-heading">
-      <div className="section-copy">
-        <p className="overline">Platform Partners</p>
-        <h2 id="partners-heading">{content.partners.title}</h2>
-        <p>{content.partners.body}</p>
-      </div>
+    <section
+      className="site-section partner-section"
+      id="partners"
+      aria-labelledby="partners-heading"
+    >
+      <div className="section-inner partner-inner">
+        <div className="section-fill-grid partner-layout">
+          <div className="section-copy section-heading-block">
+            <p className="overline">Platform Partners</p>
+            <h2 id="partners-heading">{content.partners.title}</h2>
+            <p>{content.partners.body}</p>
+          </div>
 
-      <div className="partner-grid">
-        {content.partners.items.map((item) => (
-          <article key={item.title}>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </article>
-        ))}
-      </div>
+          <div className="partner-grid">
+            {content.partners.items.map((item) => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
 
-      <div className="external-links" aria-label="Partner websites">
-        <a href={contactConfig.gnwayUrl} target="_blank" rel="noreferrer">
-          GNWAY
-        </a>
-        <a href={contactConfig.bangwo8Url} target="_blank" rel="noreferrer">
-          Bangwo8
-        </a>
+        <div className="external-links" aria-label="Partner websites">
+          <a href={contactConfig.gnwayUrl} target="_blank" rel="noreferrer">
+            GNWAY
+          </a>
+          <a href={contactConfig.bangwo8Url} target="_blank" rel="noreferrer">
+            Bangwo8
+          </a>
+        </div>
       </div>
     </section>
   )
