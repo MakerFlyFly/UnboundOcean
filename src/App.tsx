@@ -11,6 +11,7 @@ import { ServicesSection } from './components/ServicesSection'
 import { type Locale, siteContent } from './content/siteContent'
 
 const LOCALE_STORAGE_KEY = 'unboundocean-locale'
+type RouteKey = 'home' | 'assistant'
 
 const routeMeta = {
   en: {
@@ -19,12 +20,20 @@ const routeMeta = {
       description:
         'UnboundOcean is a cross-border sales and local deployment partner for enterprise intelligent service solutions entering Southeast Asia.',
       canonical: 'https://unboundocean.com/',
+      alternates: {
+        en: 'https://unboundocean.com/',
+        zh: 'https://unboundocean.com/zh',
+      },
     },
     assistant: {
       title: 'UnboundOcean AI Assistant | Market Coverage and Contact Routing',
       description:
         'Ask the UnboundOcean assistant about Southeast Asia market coverage, services, partner capabilities, and sales contact routing.',
       canonical: 'https://unboundocean.com/chat',
+      alternates: {
+        en: 'https://unboundocean.com/chat',
+        zh: 'https://unboundocean.com/zh/chat',
+      },
     },
   },
   zh: {
@@ -32,18 +41,57 @@ const routeMeta = {
       title: '未界寻洋 | 东南亚市场销售与落地伙伴',
       description:
         '未界寻洋为企业智能服务方案进入东南亚提供销售拓展、本地交付协调与客户支持。',
-      canonical: 'https://unboundocean.com/',
+      canonical: 'https://unboundocean.com/zh',
+      alternates: {
+        en: 'https://unboundocean.com/',
+        zh: 'https://unboundocean.com/zh',
+      },
     },
     assistant: {
       title: '未界寻洋 AI 助手 | 市场、服务与联系方式',
       description:
         '通过未界寻洋 AI 助手了解东南亚市场、服务方式、方案能力和联系方式。',
-      canonical: 'https://unboundocean.com/chat',
+      canonical: 'https://unboundocean.com/zh/chat',
+      alternates: {
+        en: 'https://unboundocean.com/chat',
+        zh: 'https://unboundocean.com/zh/chat',
+      },
     },
   },
 }
 
-function getStoredLocale(): Locale {
+function getRouteInfo(pathname: string): { route: RouteKey; localeFromPath?: Locale } {
+  const path = pathname.replace(/\/+$/, '') || '/'
+
+  if (path === '/zh/chat') {
+    return { route: 'assistant', localeFromPath: 'zh' }
+  }
+
+  if (path === '/zh') {
+    return { route: 'home', localeFromPath: 'zh' }
+  }
+
+  if (path === '/chat') {
+    return { route: 'assistant' }
+  }
+
+  return { route: 'home' }
+}
+
+function getPathForLocale(locale: Locale, route: RouteKey) {
+  if (locale === 'zh') {
+    return route === 'assistant' ? '/zh/chat' : '/zh'
+  }
+
+  return route === 'assistant' ? '/chat' : '/'
+}
+
+function getInitialLocale(): Locale {
+  const routeInfo = getRouteInfo(window.location.pathname)
+  if (routeInfo.localeFromPath) {
+    return routeInfo.localeFromPath
+  }
+
   try {
     return window.localStorage.getItem(LOCALE_STORAGE_KEY) === 'zh' ? 'zh' : 'en'
   } catch {
@@ -58,6 +106,15 @@ function updateMeta(selector: string, value: string) {
   }
 }
 
+function updateAlternate(hreflang: string, href: string) {
+  const element = document.querySelector<HTMLLinkElement>(
+    `link[rel="alternate"][hreflang="${hreflang}"]`,
+  )
+  if (element) {
+    element.href = href
+  }
+}
+
 function decodeHash(hash: string) {
   try {
     return decodeURIComponent(hash)
@@ -67,9 +124,23 @@ function decodeHash(hash: string) {
 }
 
 function App() {
-  const [locale, setLocale] = useState<Locale>(getStoredLocale)
+  const [locale, setLocale] = useState<Locale>(getInitialLocale)
   const content = siteContent[locale]
-  const isAssistantRoute = window.location.pathname.replace(/\/+$/, '') === '/chat'
+  const routeInfo = getRouteInfo(window.location.pathname)
+  const isAssistantRoute = routeInfo.route === 'assistant'
+
+  const toggleLocale = () => {
+    setLocale((current) => {
+      const nextLocale = current === 'en' ? 'zh' : 'en'
+      const nextPath = getPathForLocale(nextLocale, routeInfo.route)
+
+      if (window.location.pathname !== nextPath) {
+        window.history.replaceState(null, '', `${nextPath}${window.location.hash}`)
+      }
+
+      return nextLocale
+    })
+  }
 
   useEffect(() => {
     document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en'
@@ -90,6 +161,8 @@ function App() {
     updateMeta('meta[property="og:url"]', meta.canonical)
     updateMeta('meta[name="twitter:title"]', meta.title)
     updateMeta('meta[name="twitter:description"]', meta.description)
+    updateAlternate('en', meta.alternates.en)
+    updateAlternate('zh-CN', meta.alternates.zh)
 
     const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
     if (canonical) {
@@ -123,7 +196,7 @@ function App() {
         content={content}
         locale={locale}
         isAssistantRoute={isAssistantRoute}
-        onToggleLocale={() => setLocale((current) => (current === 'en' ? 'zh' : 'en'))}
+        onToggleLocale={toggleLocale}
       />
       {isAssistantRoute ? (
         <>
@@ -140,7 +213,7 @@ function App() {
           <ContactSection content={content} />
         </main>
       )}
-      <Footer content={content} />
+      <Footer content={content} locale={locale} />
     </div>
   )
 }

@@ -1055,7 +1055,7 @@ h3 {
 @media (max-width: 760px) {
   :root {
     --gutter: 22px;
-    --scroll-offset: 130px;
+    --scroll-offset: 116px;
   }
 
   .site-header {
@@ -1087,8 +1087,17 @@ h3 {
   }
 
   .nav-links {
+    flex-wrap: nowrap;
     gap: 6px 12px;
+    margin-inline: calc(var(--gutter) * -1);
+    padding-inline: var(--gutter);
     font-size: 13px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
   }
 
   .site-section {

@@ -29,7 +29,7 @@ export function ContactSection({ content }: ContactSectionProps) {
         <dl className="contact-details">
           <div>
             <dt>{content.contact.whatsappLabel}</dt>
-            <dd>{contactConfig.whatsapp}</dd>
+            <dd>{content.contact.whatsappValue}</dd>
           </div>
           <div>
             <dt>{content.contact.email}</dt>

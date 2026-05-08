@@ -13,23 +13,26 @@ export function Header({
   onToggleLocale,
   isAssistantRoute,
 }: HeaderProps) {
+  const homePath = locale === 'zh' ? '/zh' : '/'
+  const anchorBase = isAssistantRoute ? homePath : ''
+
   return (
     <header className="site-header">
       <a
         className="brand"
-        href={isAssistantRoute ? '/' : '#top'}
-        aria-label="UnboundOcean home"
+        href={isAssistantRoute ? homePath : '#top'}
+        aria-label={content.a11y.homeLink}
       >
         <img src="/logo-mark.jpg" alt="" />
       </a>
 
-      <nav className="nav-links" aria-label="Primary navigation">
+      <nav className="nav-links" aria-label={content.a11y.primaryNav}>
         {content.nav.map((item) => (
           <a
             key={item.label}
             href={
               isAssistantRoute && item.href.startsWith('#')
-                ? `/${item.href}`
+                ? `${anchorBase}${item.href}`
                 : item.href
             }
           >
@@ -43,11 +46,7 @@ export function Header({
           type="button"
           className="language-toggle"
           onClick={onToggleLocale}
-          aria-label={
-            locale === 'en'
-              ? 'Switch language to Chinese'
-              : 'Switch language to English'
-          }
+          aria-label={content.a11y.switchLanguage}
         >
           {content.languageLabel}
         </button>

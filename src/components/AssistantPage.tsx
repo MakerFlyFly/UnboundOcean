@@ -64,18 +64,27 @@ export function AssistantPage({ content, locale }: AssistantPageProps) {
       submitted.includes('市场') ||
       submitted.includes('国家') ||
       submitted.includes('东南亚')
+    const asksOverview =
+      normalized.includes('what does') ||
+      normalized.includes('about unboundocean') ||
+      normalized.includes('overview') ||
+      submitted.includes('主要做什么') ||
+      submitted.includes('做什么') ||
+      submitted.includes('业务范围')
     const asksServices =
       normalized.includes('service') ||
       normalized.includes('provide') ||
-      submitted.includes('业务') ||
-      submitted.includes('做什么') ||
+      submitted.includes('服务方式') ||
       submitted.includes('服务')
     const asksPartners =
       normalized.includes('gnway') ||
       normalized.includes('bangwo8') ||
       normalized.includes('partner') ||
+      normalized.includes('capabilit') ||
       submitted.includes('金万维') ||
       submitted.includes('帮我吧') ||
+      submitted.includes('方案') ||
+      submitted.includes('能力') ||
       submitted.includes('伙伴')
     const asksContact =
       normalized.includes('contact') ||
@@ -84,24 +93,30 @@ export function AssistantPage({ content, locale }: AssistantPageProps) {
       submitted.includes('联系') ||
       submitted.includes('销售')
 
-    if (asksMarkets) {
-      return `${content.markets.body} ${content.markets.items
-        .map((market) => market.name)
-        .join(', ')}.`
+    if (asksContact) {
+      return `${content.contact.body} Email: ${contactConfig.email}. WhatsApp: ${content.contact.whatsappValue}.`
     }
 
-    if (asksServices) {
-      return content.services.items.join(' / ')
+    if (asksOverview) {
+      return `${content.hero.body} ${content.connect.items
+        .map((item) => item.title)
+        .join(' / ')}.`
     }
 
     if (asksPartners) {
       return `${content.partners.body} ${content.partners.items
         .map((item) => item.title)
-        .join(', ')}.`
+        .join(' / ')}.`
     }
 
-    if (asksContact) {
-      return `${content.contact.body} Email: ${contactConfig.email}. WhatsApp: ${contactConfig.whatsapp}.`
+    if (asksMarkets) {
+      return `${content.markets.body} ${content.markets.items
+        .map((market) => market.name)
+        .join(' / ')}.`
+    }
+
+    if (asksServices) {
+      return content.services.items.join(' / ')
     }
 
     return copy.fallback

@@ -30,7 +30,7 @@ export function PartnerSection({ content }: PartnerSectionProps) {
           </div>
         </div>
 
-        <div className="external-links" aria-label="Partner websites">
+        <div className="external-links" aria-label={content.a11y.partnerWebsites}>
           <a href={contactConfig.gnwayUrl} target="_blank" rel="noreferrer">
             GNWAY
           </a>

@@ -63,11 +63,19 @@ export type SiteContent = {
     body: string
     whatsapp: string
     whatsappLabel: string
+    whatsappValue: string
     email: string
   }
   footer: {
     line: string
     disclaimer: string
+    copyright: string
+  }
+  a11y: {
+    homeLink: string
+    primaryNav: string
+    partnerWebsites: string
+    switchLanguage: string
   }
 }
 
@@ -215,6 +223,7 @@ export const siteContent: Record<Locale, SiteContent> = {
         'Tell us which Southeast Asian market, buyer segment, or service technology you are working with. We will route the conversation to the right next step.',
       whatsapp: 'Request WhatsApp by email',
       whatsappLabel: 'WhatsApp',
+      whatsappValue: 'Available by request',
       email: 'Email',
     },
     footer: {
@@ -222,6 +231,13 @@ export const siteContent: Record<Locale, SiteContent> = {
         'Cross-border sales and local deployment partner for enterprise intelligent service solutions.',
       disclaimer:
         'Partner names are referenced for business context. Trademarks belong to their respective owners.',
+      copyright: '(c) 2026 UnboundOcean. All rights reserved.',
+    },
+    a11y: {
+      homeLink: 'UnboundOcean home',
+      primaryNav: 'Primary navigation',
+      partnerWebsites: 'Partner websites',
+      switchLanguage: 'Switch language to Chinese',
     },
   },
   zh: {
@@ -232,7 +248,7 @@ export const siteContent: Record<Locale, SiteContent> = {
       { label: '方案能力', href: '#partners' },
       { label: '服务方式', href: '#services' },
       { label: '联系我们', href: '#contact' },
-      { label: 'AI 助手', href: '/chat' },
+      { label: 'AI 助手', href: '/zh/chat' },
     ],
     cta: {
       contact: '联系销售',
@@ -349,12 +365,20 @@ export const siteContent: Record<Locale, SiteContent> = {
         '请说明目标国家、客户类型、方案方向或当前阶段。我们会先判断适合的进入路径，再安排销售或项目沟通。',
       whatsapp: '邮件索取 WhatsApp',
       whatsappLabel: 'WhatsApp',
+      whatsappValue: '请通过邮件索取',
       email: '邮箱',
     },
     footer: {
       line: '未界寻洋（UnboundOcean）专注企业智能服务方案在东南亚的销售拓展与本地落地。',
       disclaimer:
         '合作伙伴名称仅用于业务语境说明，相关商标归各自权利方所有。',
+      copyright: '(c) 2026 未界寻洋（UnboundOcean）。保留所有权利。',
+    },
+    a11y: {
+      homeLink: '未界寻洋首页',
+      primaryNav: '主导航',
+      partnerWebsites: '合作伙伴网站',
+      switchLanguage: '切换到英文',
     },
   },
 }
