@@ -10,14 +10,75 @@ import { PartnerSection } from './components/PartnerSection'
 import { ServicesSection } from './components/ServicesSection'
 import { type Locale, siteContent } from './content/siteContent'
 
+const LOCALE_STORAGE_KEY = 'unboundocean-locale'
+
+const routeMeta = {
+  home: {
+    title: 'UnboundOcean | Southeast Asia Sales & Local Deployment Partner',
+    description:
+      'UnboundOcean is a cross-border sales and local deployment partner for enterprise intelligent service solutions entering Southeast Asia.',
+    canonical: 'https://unboundocean.com/',
+  },
+  assistant: {
+    title: 'UnboundOcean AI Assistant | Market Coverage and Contact Routing',
+    description:
+      'Ask the UnboundOcean assistant about Southeast Asia market coverage, services, partner capabilities, and sales contact routing.',
+    canonical: 'https://unboundocean.com/chat',
+  },
+}
+
+function getStoredLocale(): Locale {
+  try {
+    return window.localStorage.getItem(LOCALE_STORAGE_KEY) === 'zh' ? 'zh' : 'en'
+  } catch {
+    return 'en'
+  }
+}
+
+function updateMeta(selector: string, value: string) {
+  const element = document.querySelector<HTMLMetaElement>(selector)
+  if (element) {
+    element.content = value
+  }
+}
+
+function decodeHash(hash: string) {
+  try {
+    return decodeURIComponent(hash)
+  } catch {
+    return hash
+  }
+}
+
 function App() {
-  const [locale, setLocale] = useState<Locale>('en')
+  const [locale, setLocale] = useState<Locale>(getStoredLocale)
   const content = siteContent[locale]
   const isAssistantRoute = window.location.pathname.replace(/\/+$/, '') === '/chat'
 
   useEffect(() => {
     document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en'
+    try {
+      window.localStorage.setItem(LOCALE_STORAGE_KEY, locale)
+    } catch {
+      // Ignore storage failures; the visible language still updates for this page.
+    }
   }, [locale])
+
+  useEffect(() => {
+    const meta = isAssistantRoute ? routeMeta.assistant : routeMeta.home
+    document.title = meta.title
+    updateMeta('meta[name="description"]', meta.description)
+    updateMeta('meta[property="og:title"]', meta.title)
+    updateMeta('meta[property="og:description"]', meta.description)
+    updateMeta('meta[property="og:url"]', meta.canonical)
+    updateMeta('meta[name="twitter:title"]', meta.title)
+    updateMeta('meta[name="twitter:description"]', meta.description)
+
+    const canonical = document.querySelector<HTMLLinkElement>('link[rel="canonical"]')
+    if (canonical) {
+      canonical.href = meta.canonical
+    }
+  }, [isAssistantRoute])
 
   useEffect(() => {
     const scrollToHash = () => {
@@ -27,9 +88,7 @@ function App() {
       }
 
       window.requestAnimationFrame(() => {
-        document
-          .getElementById(decodeURIComponent(hash))
-          ?.scrollIntoView({ block: 'start' })
+        document.getElementById(decodeHash(hash))?.scrollIntoView({ block: 'start' })
       })
     }
 
