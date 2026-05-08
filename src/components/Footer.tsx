@@ -10,7 +10,7 @@ export function Footer({ content }: FooterProps) {
     <footer className="site-footer">
       <div>
         <a className="brand footer-brand" href="#top" aria-label="UnboundOcean home">
-          <img src="/logo-mark.jpg" alt="UnboundOcean" />
+          <img src="/logo-mark.jpg" alt="" />
         </a>
         <p>{content.footer.line}</p>
       </div>

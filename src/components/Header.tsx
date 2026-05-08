@@ -20,7 +20,7 @@ export function Header({
         href={isAssistantRoute ? '/' : '#top'}
         aria-label="UnboundOcean home"
       >
-        <img src="/logo-mark.jpg" alt="UnboundOcean" />
+        <img src="/logo-mark.jpg" alt="" />
       </a>
 
       <nav className="nav-links" aria-label="Primary navigation">
