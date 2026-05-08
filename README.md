@@ -27,6 +27,8 @@ npm run build
 
 - Bilingual website copy lives in `src/content/siteContent.ts`.
 - Public contact links live in `src/config/contact.ts`.
-- The logo is stored at `public/logo.jpg`, copied from the current UnboundOcean site.
+- The logo is copied from the current UnboundOcean site and served through optimized local assets.
+- Optimized logo and favicon assets live in `public/logo-mark.jpg` and `public/favicon.png`.
+- Static hosting fallbacks for `/chat` are provided through `vercel.json` and `public/_redirects`.
 
-Update the WhatsApp number and sales email in `src/config/contact.ts` before production launch.
+Update the sales email and WhatsApp workflow in `src/config/contact.ts` before production launch. Until a real WhatsApp number is available, the WhatsApp CTA routes to an email request.

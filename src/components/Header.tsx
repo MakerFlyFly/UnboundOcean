@@ -4,19 +4,36 @@ type HeaderProps = {
   content: SiteContent
   locale: Locale
   onToggleLocale: () => void
+  isAssistantRoute: boolean
 }
 
-export function Header({ content, locale, onToggleLocale }: HeaderProps) {
+export function Header({
+  content,
+  locale,
+  onToggleLocale,
+  isAssistantRoute,
+}: HeaderProps) {
   return (
     <header className="site-header">
-      <a className="brand" href="#top" aria-label="UnboundOcean home">
-        <img src="/logo.jpg" alt="UnboundOcean" />
+      <a
+        className="brand"
+        href={isAssistantRoute ? '/' : '#top'}
+        aria-label="UnboundOcean home"
+      >
+        <img src="/logo-mark.jpg" alt="UnboundOcean" />
         <span>UnboundOcean</span>
       </a>
 
       <nav className="nav-links" aria-label="Primary navigation">
         {content.nav.map((item) => (
-          <a key={item.label} href={item.href}>
+          <a
+            key={item.label}
+            href={
+              isAssistantRoute && item.href.startsWith('#')
+                ? `/${item.href}`
+                : item.href
+            }
+          >
             {item.label}
           </a>
         ))}

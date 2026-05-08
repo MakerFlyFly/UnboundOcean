@@ -10,16 +10,16 @@ export function Footer({ content }: FooterProps) {
     <footer className="site-footer">
       <div>
         <a className="brand footer-brand" href="#top" aria-label="UnboundOcean home">
-          <img src="/logo.jpg" alt="UnboundOcean" />
+          <img src="/logo-mark.jpg" alt="UnboundOcean" />
           <span>UnboundOcean</span>
         </a>
         <p>{content.footer.line}</p>
       </div>
 
       <div className="footer-links">
-        <a href="#partners">Platform Partners</a>
-        <a href="#markets">Markets</a>
-        <a href="#services">Services</a>
+        <a href="/#partners">Platform Partners</a>
+        <a href="/#markets">Markets</a>
+        <a href="/#services">Services</a>
         <a href={contactConfig.assistantPath}>AI Assistant</a>
         <a href={contactConfig.gnwayUrl} target="_blank" rel="noreferrer">
           GNWAY
@@ -30,6 +30,7 @@ export function Footer({ content }: FooterProps) {
       </div>
 
       <p className="copyright">© 2026 UnboundOcean. All rights reserved.</p>
+      <p className="legal-note">{content.footer.disclaimer}</p>
     </footer>
   )
 }

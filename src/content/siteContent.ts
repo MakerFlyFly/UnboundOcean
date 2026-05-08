@@ -58,10 +58,12 @@ export type SiteContent = {
     title: string
     body: string
     whatsapp: string
+    whatsappLabel: string
     email: string
   }
   footer: {
     line: string
+    disclaimer: string
   }
 }
 
@@ -201,12 +203,15 @@ export const siteContent: Record<Locale, SiteContent> = {
       title: 'Start with the market you want to reach.',
       body:
         'Tell us which Southeast Asian market, buyer segment, or service technology you are working with. We will route the conversation to the right next step.',
-      whatsapp: 'WhatsApp',
+      whatsapp: 'Request WhatsApp by email',
+      whatsappLabel: 'WhatsApp',
       email: 'Email',
     },
     footer: {
       line:
         'Cross-border sales and local deployment partner for enterprise intelligent service solutions.',
+      disclaimer:
+        'Partner names are referenced for business context. Trademarks belong to their respective owners.',
     },
   },
   zh: {
@@ -327,11 +332,13 @@ export const siteContent: Record<Locale, SiteContent> = {
       title: '从你想进入的市场开始聊。',
       body:
         '告诉我们你的目标东南亚市场、买家类型或服务技术方向，我们会把沟通推进到合适的下一步。',
-      whatsapp: 'WhatsApp',
+      whatsapp: '邮件索取 WhatsApp',
+      whatsappLabel: 'WhatsApp',
       email: '邮箱',
     },
     footer: {
       line: '企业智能服务方案进入东南亚市场的跨境销售与本地落地伙伴。',
+      disclaimer: '合作伙伴名称仅用于业务语境说明，相关商标归各自权利方所有。',
     },
   },
 }

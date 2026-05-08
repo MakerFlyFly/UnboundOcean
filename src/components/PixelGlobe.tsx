@@ -149,6 +149,7 @@ function drawRoute(
 
 export function PixelGlobe() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const sizeRef = useRef({ width: 0, height: 0, pixelRatio: 1 })
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -163,9 +164,10 @@ export function PixelGlobe() {
 
     let animationFrame = 0
     let start = performance.now()
+    const isVisible = { current: true }
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
 
-    const render = (time: number) => {
+    const updateSize = () => {
       const rect = canvas.getBoundingClientRect()
       const pixelRatio = Math.min(window.devicePixelRatio || 1, 2)
       const width = Math.max(Math.floor(rect.width * pixelRatio), 1)
@@ -176,14 +178,37 @@ export function PixelGlobe() {
         canvas.height = height
       }
 
-      context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
-      context.clearRect(0, 0, rect.width, rect.height)
+      sizeRef.current = {
+        width: rect.width,
+        height: rect.height,
+        pixelRatio,
+      }
+    }
+
+    const render = (time: number) => {
+      const { width, height } = sizeRef.current
+      if (width <= 0 || height <= 0) {
+        updateSize()
+      }
+
+      const currentSize = sizeRef.current
+      const isCompact = currentSize.width < 500
+
+      context.setTransform(
+        currentSize.pixelRatio,
+        0,
+        0,
+        currentSize.pixelRatio,
+        0,
+        0,
+      )
+      context.clearRect(0, 0, currentSize.width, currentSize.height)
 
       const elapsed = reduceMotion.matches ? 0 : (time - start) / 1000
       const rotation = -112 + elapsed * 5.5
-      const radius = Math.min(rect.width, rect.height) * 0.38
-      const centerX = rect.width * 0.5
-      const centerY = rect.height * 0.49
+      const radius = Math.min(currentSize.width, currentSize.height) * 0.38
+      const centerX = currentSize.width * 0.5
+      const centerY = currentSize.height * 0.49
       const progress = (elapsed * 0.12) % 1
 
       const glow = context.createRadialGradient(
@@ -215,7 +240,12 @@ export function PixelGlobe() {
       context.fillStyle = 'rgba(20, 20, 20, 0.08)'
       context.fill()
 
-      for (const point of SPHERE_POINTS) {
+      for (let index = 0; index < SPHERE_POINTS.length; index += 1) {
+        if (isCompact && index % 2 === 1) {
+          continue
+        }
+
+        const point = SPHERE_POINTS[index]
         const projected = project(
           point.lat,
           point.lon,
@@ -235,11 +265,17 @@ export function PixelGlobe() {
         context.fillRect(projected.x - size / 2, projected.y - size / 2, size, size)
       }
 
-      ROUTES.forEach((route) =>
+      const routes = isCompact ? ROUTES.slice(0, 4) : ROUTES
+      routes.forEach((route) =>
         drawRoute(context, route, rotation, radius, centerX, centerY, progress),
       )
 
-      for (const point of POINTS) {
+      for (let index = 0; index < POINTS.length; index += 1) {
+        if (isCompact && index % 2 === 1) {
+          continue
+        }
+
+        const point = POINTS[index]
         const projected = project(
           point.lat,
           point.lon,
@@ -265,9 +301,14 @@ export function PixelGlobe() {
       context.lineWidth = 1
       context.stroke()
 
-      if (!reduceMotion.matches) {
+      if (!reduceMotion.matches && isVisible.current && !document.hidden) {
         animationFrame = window.requestAnimationFrame(render)
       }
+    }
+
+    const queueRender = () => {
+      window.cancelAnimationFrame(animationFrame)
+      animationFrame = window.requestAnimationFrame(render)
     }
 
     const onVisibilityChange = () => {
@@ -276,14 +317,34 @@ export function PixelGlobe() {
         return
       }
       start = performance.now()
-      animationFrame = window.requestAnimationFrame(render)
+      queueRender()
     }
 
+    updateSize()
+    const resizeObserver = new ResizeObserver(() => {
+      updateSize()
+      queueRender()
+    })
+    resizeObserver.observe(canvas)
+
+    const intersectionObserver = new IntersectionObserver(([entry]) => {
+      isVisible.current = entry.isIntersecting
+      if (entry.isIntersecting) {
+        start = performance.now()
+        queueRender()
+        return
+      }
+      window.cancelAnimationFrame(animationFrame)
+    })
+    intersectionObserver.observe(canvas)
+
     document.addEventListener('visibilitychange', onVisibilityChange)
-    animationFrame = window.requestAnimationFrame(render)
+    queueRender()
 
     return () => {
       window.cancelAnimationFrame(animationFrame)
+      resizeObserver.disconnect()
+      intersectionObserver.disconnect()
       document.removeEventListener('visibilitychange', onVisibilityChange)
     }
   }, [])
