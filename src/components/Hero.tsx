@@ -1,4 +1,3 @@
-import { contactConfig } from '../config/contact'
 import type { SiteContent } from '../content/siteContent'
 import { PixelGlobe } from './PixelGlobe'
 
@@ -18,12 +17,6 @@ export function Hero({ content }: HeroProps) {
           <a className="button button-dark" href="#contact">
             {content.cta.contact}
             <span aria-hidden="true">-&gt;</span>
-          </a>
-          <a className="button button-light" href={contactConfig.assistantPath}>
-            <span className="spark" aria-hidden="true">
-              *
-            </span>
-            {content.cta.assistant}
           </a>
         </div>
       </div>

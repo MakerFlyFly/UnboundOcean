@@ -228,7 +228,8 @@ export const siteContent: Record<Locale, SiteContent> = {
     },
     hero: {
       title: 'UnboundOcean',
-      subtitle: '企业智能服务方案进入东南亚市场的跨境销售与本地落地伙伴。',
+      subtitle:
+        '企业智能服务方案进入东南亚市场的跨境销售与本地落地伙伴。',
       body:
         '我们帮助企业服务技术进入东南亚，通过本地化销售、实施协调和面向客户的支持，连接技术方与企业买家。',
     },
@@ -239,7 +240,7 @@ export const siteContent: Record<Locale, SiteContent> = {
         {
           title: '技术厂商',
           description:
-            '我们代表企业服务技术进入东南亚市场，帮助梳理伙伴、信息表达和 GTM 路径。',
+            '我们代表企业服务技术进入东南亚市场，协助梳理伙伴、信息表达和 GTM 路径。',
           points: ['市场进入与 GTM', '伙伴与渠道拓展', '本地化建议', '方案定位'],
         },
         {
@@ -299,12 +300,12 @@ export const siteContent: Record<Locale, SiteContent> = {
         'UnboundOcean 是商业桥梁：我们介绍、定位并协调企业智能服务能力，帮助东南亚买家更容易理解和采用。',
       items: [
         {
-          title: '金万维生态经验',
+          title: 'GNWAY 生态经验',
           description:
-            '借助金万维生态的企业软件经验，同时保持本地销售动作清晰、可信、可负责。',
+            '借助 GNWAY 生态的企业软件经验，同时保持本地销售动作清晰、可信、可负责。',
         },
         {
-          title: '帮我吧能力理解',
+          title: 'Bangwo8 能力理解',
           description:
             '帮助买家理解 AI 客服、流程协同、知识运营、数据分析等服务管理能力。',
         },
@@ -338,7 +339,8 @@ export const siteContent: Record<Locale, SiteContent> = {
     },
     footer: {
       line: '企业智能服务方案进入东南亚市场的跨境销售与本地落地伙伴。',
-      disclaimer: '合作伙伴名称仅用于业务语境说明，相关商标归各自权利方所有。',
+      disclaimer:
+        '合作伙伴名称仅用于业务语境说明，相关商标归各自权利方所有。',
     },
   },
 }
