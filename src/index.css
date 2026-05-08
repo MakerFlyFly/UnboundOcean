@@ -107,19 +107,15 @@ img {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
-  font-size: 26px;
-  font-weight: 760;
-  letter-spacing: -0.03em;
   white-space: nowrap;
 }
 
 .brand img {
-  width: 54px;
-  height: 54px;
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.16);
+  width: 154px;
+  height: auto;
+  border-radius: 6px;
+  object-fit: contain;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
 }
 
 .nav-links {
@@ -644,12 +640,12 @@ h3 {
 }
 
 .footer-brand {
-  font-size: 22px;
+  align-self: start;
 }
 
 .footer-brand img {
-  width: 44px;
-  height: 44px;
+  width: 132px;
+  height: auto;
 }
 
 .site-footer p {
@@ -881,13 +877,12 @@ h3 {
   }
 
   .brand {
-    gap: 10px;
-    font-size: 21px;
+    max-width: 42vw;
   }
 
   .brand img {
-    width: 44px;
-    height: 44px;
+    width: min(138px, 100%);
+    height: auto;
   }
 
   .header-actions {

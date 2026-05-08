@@ -21,7 +21,6 @@ export function Header({
         aria-label="UnboundOcean home"
       >
         <img src="/logo-mark.jpg" alt="UnboundOcean" />
-        <span>UnboundOcean</span>
       </a>
 
       <nav className="nav-links" aria-label="Primary navigation">

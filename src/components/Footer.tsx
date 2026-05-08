@@ -11,7 +11,6 @@ export function Footer({ content }: FooterProps) {
       <div>
         <a className="brand footer-brand" href="#top" aria-label="UnboundOcean home">
           <img src="/logo-mark.jpg" alt="UnboundOcean" />
-          <span>UnboundOcean</span>
         </a>
         <p>{content.footer.line}</p>
       </div>
@@ -29,7 +28,7 @@ export function Footer({ content }: FooterProps) {
         </a>
       </div>
 
-      <p className="copyright">© 2026 UnboundOcean. All rights reserved.</p>
+      <p className="copyright">(c) 2026 UnboundOcean. All rights reserved.</p>
       <p className="legal-note">{content.footer.disclaimer}</p>
     </footer>
   )
