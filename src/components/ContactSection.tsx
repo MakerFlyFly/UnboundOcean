@@ -14,7 +14,7 @@ export function ContactSection({ content }: ContactSectionProps) {
     >
       <div className="section-inner contact-inner">
         <div className="section-heading-block">
-          <p className="overline">{content.cta.contact}</p>
+          <p className="overline">{content.contact.overline}</p>
           <h2 id="contact-heading">{content.contact.title}</h2>
         </div>
         <p className="contact-lead">{content.contact.body}</p>

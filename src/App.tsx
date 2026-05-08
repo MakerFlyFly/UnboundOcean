@@ -13,17 +13,33 @@ import { type Locale, siteContent } from './content/siteContent'
 const LOCALE_STORAGE_KEY = 'unboundocean-locale'
 
 const routeMeta = {
-  home: {
-    title: 'UnboundOcean | Southeast Asia Sales & Local Deployment Partner',
-    description:
-      'UnboundOcean is a cross-border sales and local deployment partner for enterprise intelligent service solutions entering Southeast Asia.',
-    canonical: 'https://unboundocean.com/',
+  en: {
+    home: {
+      title: 'UnboundOcean | Southeast Asia Sales & Local Deployment Partner',
+      description:
+        'UnboundOcean is a cross-border sales and local deployment partner for enterprise intelligent service solutions entering Southeast Asia.',
+      canonical: 'https://unboundocean.com/',
+    },
+    assistant: {
+      title: 'UnboundOcean AI Assistant | Market Coverage and Contact Routing',
+      description:
+        'Ask the UnboundOcean assistant about Southeast Asia market coverage, services, partner capabilities, and sales contact routing.',
+      canonical: 'https://unboundocean.com/chat',
+    },
   },
-  assistant: {
-    title: 'UnboundOcean AI Assistant | Market Coverage and Contact Routing',
-    description:
-      'Ask the UnboundOcean assistant about Southeast Asia market coverage, services, partner capabilities, and sales contact routing.',
-    canonical: 'https://unboundocean.com/chat',
+  zh: {
+    home: {
+      title: '未界寻洋 | 东南亚市场销售与落地伙伴',
+      description:
+        '未界寻洋为企业智能服务方案进入东南亚提供销售拓展、本地交付协调与客户支持。',
+      canonical: 'https://unboundocean.com/',
+    },
+    assistant: {
+      title: '未界寻洋 AI 助手 | 市场、服务与联系方式',
+      description:
+        '通过未界寻洋 AI 助手了解东南亚市场、服务方式、方案能力和联系方式。',
+      canonical: 'https://unboundocean.com/chat',
+    },
   },
 }
 
@@ -65,7 +81,8 @@ function App() {
   }, [locale])
 
   useEffect(() => {
-    const meta = isAssistantRoute ? routeMeta.assistant : routeMeta.home
+    const metaGroup = routeMeta[locale]
+    const meta = isAssistantRoute ? metaGroup.assistant : metaGroup.home
     document.title = meta.title
     updateMeta('meta[name="description"]', meta.description)
     updateMeta('meta[property="og:title"]', meta.title)
@@ -78,7 +95,7 @@ function App() {
     if (canonical) {
       canonical.href = meta.canonical
     }
-  }, [isAssistantRoute])
+  }, [isAssistantRoute, locale])
 
   useEffect(() => {
     const scrollToHash = () => {

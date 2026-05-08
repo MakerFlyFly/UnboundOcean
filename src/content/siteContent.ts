@@ -40,21 +40,25 @@ export type SiteContent = {
     items: ConnectItem[]
   }
   markets: {
+    overline: string
     title: string
     body: string
     items: MarketItem[]
   }
   partners: {
+    overline: string
     title: string
     body: string
     items: PartnerItem[]
   }
   services: {
+    overline: string
     title: string
     body: string
     items: string[]
   }
   contact: {
+    overline: string
     title: string
     body: string
     whatsapp: string
@@ -71,9 +75,11 @@ export const siteContent: Record<Locale, SiteContent> = {
   en: {
     languageLabel: 'EN / 中文',
     nav: [
-      { label: 'Platform Partners', href: '#partners' },
+      { label: 'What We Connect', href: '#connect' },
       { label: 'Markets', href: '#markets' },
+      { label: 'Partner Capabilities', href: '#partners' },
       { label: 'Services', href: '#services' },
+      { label: 'Contact', href: '#contact' },
       { label: 'AI Assistant', href: '/chat' },
     ],
     cta: {
@@ -128,6 +134,7 @@ export const siteContent: Record<Locale, SiteContent> = {
       ],
     },
     markets: {
+      overline: 'Markets',
       title: "Localized for Southeast Asia's operating reality.",
       body:
         'Six markets, one focused route to buyers. We adapt sales motion, language, deployment expectations, and support workflows to local business conditions.',
@@ -165,6 +172,7 @@ export const siteContent: Record<Locale, SiteContent> = {
       ],
     },
     partners: {
+      overline: 'Partner Capabilities',
       title: 'Enterprise capability, represented with local context.',
       body:
         'UnboundOcean works as a commercial bridge: we introduce, position, and coordinate enterprise intelligent service capabilities for Southeast Asian buyers.',
@@ -187,6 +195,7 @@ export const siteContent: Record<Locale, SiteContent> = {
       ],
     },
     services: {
+      overline: 'Services',
       title: 'Focused services for market entry and buyer success.',
       body:
         'The first version of the site keeps the offer concise. Each service can later expand into a dedicated page as the business grows.',
@@ -200,6 +209,7 @@ export const siteContent: Record<Locale, SiteContent> = {
       ],
     },
     contact: {
+      overline: 'Contact',
       title: 'Start with the market you want to reach.',
       body:
         'Tell us which Southeast Asian market, buyer segment, or service technology you are working with. We will route the conversation to the right next step.',
@@ -217,9 +227,11 @@ export const siteContent: Record<Locale, SiteContent> = {
   zh: {
     languageLabel: '中文 / EN',
     nav: [
-      { label: '平台伙伴', href: '#partners' },
-      { label: '市场', href: '#markets' },
-      { label: '服务', href: '#services' },
+      { label: '业务范围', href: '#connect' },
+      { label: '东南亚市场', href: '#markets' },
+      { label: '方案能力', href: '#partners' },
+      { label: '服务方式', href: '#services' },
+      { label: '联系我们', href: '#contact' },
       { label: 'AI 助手', href: '/chat' },
     ],
     cta: {
@@ -227,118 +239,120 @@ export const siteContent: Record<Locale, SiteContent> = {
       assistant: '打开 AI 助手',
     },
     hero: {
-      title: 'UnboundOcean',
-      subtitle:
-        '企业智能服务方案进入东南亚市场的跨境销售与本地落地伙伴。',
+      title: '未界寻洋',
+      subtitle: '企业智能服务方案的东南亚市场拓展伙伴。',
       body:
-        '我们帮助企业服务技术进入东南亚，通过本地化销售、实施协调和面向客户的支持，连接技术方与企业买家。',
+        '未界寻洋（UnboundOcean）为企业级智能服务方案进入东南亚提供销售拓展与本地落地支持，推进市场判断、客户沟通、方案说明、部署协调和持续服务。',
     },
     connect: {
-      kicker: '我们连接什么',
-      title: '连接合适的技术、合适的买家，以及真正可落地的交付。',
+      kicker: '业务范围',
+      title: '让技术方案在东南亚形成销售、交付和服务闭环。',
       items: [
         {
-          title: '技术厂商',
+          title: '技术出海',
           description:
-            '我们代表企业服务技术进入东南亚市场，协助梳理伙伴、信息表达和 GTM 路径。',
-          points: ['市场进入与 GTM', '伙伴与渠道拓展', '本地化建议', '方案定位'],
+            '为企业服务厂商梳理目标市场、客户画像、销售材料和合作路径。',
+          points: ['市场判断', '客户画像', '销售材料', '渠道合作'],
         },
         {
-          title: '企业买家',
+          title: '客户拓展',
           description:
-            '我们帮助企业评估、选择并采用智能服务方案，让采购和落地更清晰。',
-          points: ['方案评估', '厂商匹配', '商务支持', '实施协调'],
+            '面向当地企业客户进行需求沟通、方案介绍、厂商匹配和商务推进。',
+          points: ['需求沟通', '方案介绍', '厂商匹配', '商务推进'],
         },
         {
-          title: '本地交付',
+          title: '落地支持',
           description:
-            '我们协调实施、集成、培训和客户支持，帮助项目从销售走向持续使用。',
-          points: ['实施管理', '集成与定制', '培训与采用', '持续支持'],
+            '在实施、培训、服务支持和本地伙伴协同中持续跟进项目进展。',
+          points: ['实施协调', '培训采用', '客户支持', '伙伴协同'],
         },
       ],
     },
     markets: {
-      title: '面向东南亚真实经营环境进行本地化。',
+      overline: '东南亚市场',
+      title: '先聚焦重点市场，再推进区域扩展。',
       body:
-        '六个重点市场，一条清晰的买家路径。我们围绕语言、销售方式、部署预期和支持流程做本地适配。',
+        '我们优先服务新加坡、马来西亚、印度尼西亚、越南、泰国和菲律宾，按市场成熟度、语言环境、客户行业和交付习惯制定进入节奏。',
       items: [
         {
           name: '新加坡',
-          role: '区域总部',
-          detail: '面向 SaaS、金融科技和企业采购的可信入口。',
+          role: '区域决策与采购中心',
+          detail: '适合 SaaS、金融科技、企业服务与区域总部客户沟通。',
         },
         {
           name: '马来西亚',
-          role: '双语市场',
-          detail: '覆盖英文与中文业务团队的商业沟通场景。',
+          role: '多语言业务市场',
+          detail: '覆盖英文、中文和本地团队，适合伙伴渠道与企业客户拓展。',
         },
         {
           name: '印度尼西亚',
-          role: '规模市场',
-          detail: '电商、运营和企业服务需求持续增长。',
+          role: '规模增长市场',
+          detail: '面向电商、运营、客户服务和企业数字化需求。',
         },
         {
           name: '越南',
-          role: '增长走廊',
-          detail: '科技、制造和服务团队数字化进程快速。',
+          role: '制造与科技增长市场',
+          detail: '关注制造、科技服务和快速成长的运营团队。',
         },
         {
           name: '泰国',
-          role: '数字采用',
-          detail: '客户运营和企业服务场景具备明确转型需求。',
+          role: '服务与流程升级市场',
+          detail: '适合客户运营、服务管理和流程优化场景。',
         },
         {
           name: '菲律宾',
-          role: '服务中心',
-          detail: '英语支持运营和 BPO 能力成熟。',
+          role: '英语服务运营市场',
+          detail: '具备英语支持、BPO 和客户服务运营基础。',
         },
       ],
     },
     partners: {
-      title: '以本地语境承接企业级能力。',
+      overline: '方案能力',
+      title: '用成熟方案能力匹配本地客户需求。',
       body:
-        'UnboundOcean 是商业桥梁：我们介绍、定位并协调企业智能服务能力，帮助东南亚买家更容易理解和采用。',
+        '未界寻洋定位为商业与落地伙伴，而非单一软件平台。我们代表并协调 GNWAY、Bangwo8 等相关企业服务能力，帮助客户理解适用场景、评估价值，并推进销售、部署和服务协同。',
       items: [
         {
-          title: 'GNWAY 生态经验',
+          title: 'GNWAY 企业软件经验',
           description:
-            '借助 GNWAY 生态的企业软件经验，同时保持本地销售动作清晰、可信、可负责。',
+            '借助 GNWAY 体系在企业软件和服务管理领域的经验，支持方案梳理和商业沟通。',
         },
         {
-          title: 'Bangwo8 能力理解',
+          title: 'Bangwo8 服务管理能力',
           description:
-            '帮助买家理解 AI 客服、流程协同、知识运营、数据分析等服务管理能力。',
+            '帮助客户理解 AI 客服、工单协同、知识运营、数据分析等服务管理能力。',
         },
         {
-          title: '本地协调',
+          title: '本地协同',
           description:
-            '在评估、部署和采用过程中协调厂商、本地伙伴和客户关键角色。',
+            '把厂商、客户、本地伙伴放在同一条推进线上，减少跨境沟通和交付摩擦。',
         },
       ],
     },
     services: {
-      title: '服务聚焦市场进入与买家成功。',
-      body:
-        '官网首期保持简洁。随着业务增长，每一项服务都可以扩展为独立页面。',
+      overline: '服务方式',
+      title: '围绕进入市场后的关键动作提供支持。',
+      body: '我们把工作聚焦在能推动项目向前走的环节：找客户、讲清方案、建立合作、协调落地。',
       items: [
-        '跨境销售代表',
-        '东南亚伙伴与渠道拓展',
-        '买家发现与方案匹配',
-        '本地化信息和材料',
-        '实施协调',
-        '客户支持协同',
+        '目标市场判断',
+        '客户与渠道拓展',
+        '销售材料本地化',
+        '需求沟通与方案说明',
+        '商务推进与伙伴协调',
+        '实施、培训与客户支持衔接',
       ],
     },
     contact: {
-      title: '从你想进入的市场开始聊。',
+      overline: '联系我们',
+      title: '告诉我们你想进入哪个市场。',
       body:
-        '告诉我们你的目标东南亚市场、买家类型或服务技术方向，我们会把沟通推进到合适的下一步。',
+        '请说明目标国家、客户类型、方案方向或当前阶段。我们会先判断适合的进入路径，再安排销售或项目沟通。',
       whatsapp: '邮件索取 WhatsApp',
       whatsappLabel: 'WhatsApp',
       email: '邮箱',
     },
     footer: {
-      line: '企业智能服务方案进入东南亚市场的跨境销售与本地落地伙伴。',
+      line: '未界寻洋（UnboundOcean）专注企业智能服务方案在东南亚的销售拓展与本地落地。',
       disclaimer:
         '合作伙伴名称仅用于业务语境说明，相关商标归各自权利方所有。',
     },

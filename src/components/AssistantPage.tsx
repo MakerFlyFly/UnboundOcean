@@ -29,22 +29,21 @@ const assistantCopy = {
   },
   zh: {
     overline: 'AI 助手',
-    title: '向 UnboundOcean 助手提问。',
-    body:
-      '你可以通过这个助手了解市场覆盖、服务范围、伙伴能力和联系方式。',
-    placeholder: '询问市场、服务、伙伴或联系方式...',
+    title: '未界寻洋 AI 助手',
+    body: '快速了解目标市场、服务方式、方案能力和联系方式。',
+    placeholder: '输入你的市场、服务或联系方式问题...',
     send: '提问',
     contact: '联系销售',
     home: '返回首页',
     empty: '输入问题，或选择下方快捷问题。',
     prompts: [
-      '你们覆盖哪些东南亚市场？',
-      'UnboundOcean 提供什么服务？',
-      'GNWAY 和 Bangwo8 分别是什么关系？',
-      '如何联系销售？',
+      '未界寻洋主要做什么？',
+      '你们服务哪些东南亚市场？',
+      'GNWAY 和 Bangwo8 与未界寻洋是什么关系？',
+      '我想进入东南亚，如何联系？',
     ],
     fallback:
-      '我可以回答 UnboundOcean 的市场、服务、伙伴能力和联系方式。具体项目或落地问题，请联系销售。',
+      '我可以介绍未界寻洋的业务范围、东南亚市场、方案能力和联系方式。具体项目请联系销售沟通。',
   },
 }
 
@@ -63,10 +62,13 @@ export function AssistantPage({ content, locale }: AssistantPageProps) {
       normalized.includes('market') ||
       normalized.includes('country') ||
       submitted.includes('市场') ||
+      submitted.includes('国家') ||
       submitted.includes('东南亚')
     const asksServices =
       normalized.includes('service') ||
       normalized.includes('provide') ||
+      submitted.includes('业务') ||
+      submitted.includes('做什么') ||
       submitted.includes('服务')
     const asksPartners =
       normalized.includes('gnway') ||
@@ -140,7 +142,7 @@ export function AssistantPage({ content, locale }: AssistantPageProps) {
             </form>
 
             <div className="assistant-answer" aria-live="polite">
-              <span>UnboundOcean</span>
+              <span>{content.hero.title}</span>
               <p>{answer}</p>
             </div>
 

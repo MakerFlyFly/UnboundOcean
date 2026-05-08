@@ -13,7 +13,7 @@ export function ServicesSection({ content }: ServicesSectionProps) {
     >
       <div className="section-inner section-fill-grid services-inner">
         <div className="section-copy section-heading-block">
-          <p className="overline">Services</p>
+          <p className="overline">{content.services.overline}</p>
           <h2 id="services-heading">{content.services.title}</h2>
           <p>{content.services.body}</p>
         </div>

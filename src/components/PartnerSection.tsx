@@ -15,7 +15,7 @@ export function PartnerSection({ content }: PartnerSectionProps) {
       <div className="section-inner partner-inner">
         <div className="section-fill-grid partner-layout">
           <div className="section-copy section-heading-block">
-            <p className="overline">Platform Partners</p>
+            <p className="overline">{content.partners.overline}</p>
             <h2 id="partners-heading">{content.partners.title}</h2>
             <p>{content.partners.body}</p>
           </div>
