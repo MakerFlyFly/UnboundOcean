@@ -23,12 +23,24 @@ npm run lint
 npm run build
 ```
 
+## Production Routes
+
+The production build generates static HTML for each public route:
+
+- `/`
+- `/chat`
+- `/zh`
+- `/zh/chat`
+
+`npm run build` runs Vite and then `scripts/write-route-html.mjs` to write
+route-specific metadata for canonical URLs, hreflang alternates, Open Graph, and
+Twitter cards.
+
 ## Content And Contact Configuration
 
 - Bilingual website copy lives in `src/content/siteContent.ts`.
 - Public contact links live in `src/config/contact.ts`.
 - The logo is copied from the current UnboundOcean site and served through optimized local assets.
 - Optimized logo and favicon assets live in `public/logo-mark.jpg` and `public/favicon.png`.
-- Static hosting fallbacks for `/chat` are provided through `vercel.json` and `public/_redirects`.
 
 Update the sales email and WhatsApp workflow in `src/config/contact.ts` before production launch. Until a real WhatsApp number is available, the WhatsApp CTA routes to an email request.

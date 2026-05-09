@@ -25,11 +25,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/chat",
-      "destination": "/index.html"
-    }
   ]
 }
