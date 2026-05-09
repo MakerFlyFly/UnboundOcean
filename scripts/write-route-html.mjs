@@ -11,9 +11,9 @@ const routes = [
     title: 'UnboundOcean | Southeast Asia Sales & Local Deployment Partner',
     description:
       'UnboundOcean is a cross-border sales and local deployment partner for enterprise intelligent service solutions entering Southeast Asia.',
-    canonical: 'https://unboundocean.com/',
-    alternateEn: 'https://unboundocean.com/',
-    alternateZh: 'https://unboundocean.com/zh',
+    canonical: 'https://unboundocean.vercel.app/',
+    alternateEn: 'https://unboundocean.vercel.app/',
+    alternateZh: 'https://unboundocean.vercel.app/zh',
   },
   {
     output: 'chat/index.html',
@@ -21,9 +21,9 @@ const routes = [
     title: 'UnboundOcean AI Assistant | Market Coverage and Contact Routing',
     description:
       'Ask the UnboundOcean assistant about Southeast Asia market coverage, services, partner capabilities, and sales contact routing.',
-    canonical: 'https://unboundocean.com/chat',
-    alternateEn: 'https://unboundocean.com/chat',
-    alternateZh: 'https://unboundocean.com/zh/chat',
+    canonical: 'https://unboundocean.vercel.app/chat',
+    alternateEn: 'https://unboundocean.vercel.app/chat',
+    alternateZh: 'https://unboundocean.vercel.app/zh/chat',
   },
   {
     output: 'zh/index.html',
@@ -31,9 +31,9 @@ const routes = [
     title: '未界寻洋 | 东南亚市场销售与落地伙伴',
     description:
       '未界寻洋为企业智能服务方案进入东南亚提供销售拓展、本地交付协调与客户支持。',
-    canonical: 'https://unboundocean.com/zh',
-    alternateEn: 'https://unboundocean.com/',
-    alternateZh: 'https://unboundocean.com/zh',
+    canonical: 'https://unboundocean.vercel.app/zh',
+    alternateEn: 'https://unboundocean.vercel.app/',
+    alternateZh: 'https://unboundocean.vercel.app/zh',
   },
   {
     output: 'zh/chat/index.html',
@@ -41,9 +41,9 @@ const routes = [
     title: '未界寻洋 AI 助手 | 市场、服务与联系方式',
     description:
       '通过未界寻洋 AI 助手了解东南亚市场、服务方式、方案能力和联系方式。',
-    canonical: 'https://unboundocean.com/zh/chat',
-    alternateEn: 'https://unboundocean.com/chat',
-    alternateZh: 'https://unboundocean.com/zh/chat',
+    canonical: 'https://unboundocean.vercel.app/zh/chat',
+    alternateEn: 'https://unboundocean.vercel.app/chat',
+    alternateZh: 'https://unboundocean.vercel.app/zh/chat',
   },
 ]
 
